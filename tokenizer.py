@@ -150,9 +150,12 @@ def text2listOfSentences(conc_sent:str) -> [[str]]:
 def handleUrl(s,t): return ('URL',t)
 def handleEng(s,t): return ('ENG',t)
 def handleHeb(s,t):
-    match = re.match(pattern=re_nonAcronymQuoteMarks, string=t, flags=(re.UNICODE))
-    if match:
-        t = " ".join((match.group("mark"),match.group("head")+match.group("tail")))
+    # flip order in a non acronym quote marks
+    match_nonAcronymQuoteMark = re.match(pattern=re_nonAcronymQuoteMarks, string=t, flags=(re.UNICODE))
+    if match_nonAcronymQuoteMark:
+        t = " ".join((match_nonAcronymQuoteMark.group("mark"),match_nonAcronymQuoteMark.group("head")+match_nonAcronymQuoteMark.group("tail")))
+    # seperate inner dashes
+    t = t.replace("-", " - ")
     return ('HEB',t)
 
 def handleNonAcronymQuoteMark(s,t):
