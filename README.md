@@ -10,11 +10,9 @@ the tokenizer is based on Yoav Goldberg's "A robust Hebrew tokenizer" (2010)- ht
 
 Known Issues:
 
-1. Sentence Seperation
-  a. utterences - arbitrarilly cut utterences ending with "?" "!" in middle of sentences
+Sentence Seperation:
+1. utterences - arbitrarilly cut utterences ending with "?" "!" in middle of sentences
     ex: "אלי! אם תשמע יריות תכופף" seperates to the two seperate "אלי!" and "אם תשמע יריות תתכופף" 
-  b. Dotted Acronyms - when possible, dotted acronym is chosen over sentence seperation. conflicts when a short acronym appears in
-     the end of a sentence and the next starts with a hebrew word. 
+2. Dotted Acronyms - when possible, dotted acronym is chosen over sentence seperation. conflicts when a short acronym appears in the end of a sentence and the next starts with a hebrew word. 
     ex: the two sentences {... חברת י.ב.מ.}{בנוסף, היום דיווח ...} will be treated as one sentence "... י.ב.מ.בנוסף, ..."
-  c. numbering - the letters א-י followed by a dot match the "numbering" regex. thus, a sentence that ends with one of those single
-     letters will not be seperated
+3. numbering - the letters א-י followed by a dot match the "numbering" regex. thus, a sentence that ends with one of those single letters will not be seperated
